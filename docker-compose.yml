@@ -1,0 +1,21 @@
+version: "3.5"
+
+services:
+  retronas:
+    image: natewalck/retronas:main
+    container_name: retronas
+    ports:
+    - 445:445
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK_SET=022 #optional
+    volumes:
+      - ./config:/opt/retronas/config
+      - ./data:/data
+    networks:
+      - retronas
+    restart: unless-stopped
+networks:
+  retronas:
+    external: true

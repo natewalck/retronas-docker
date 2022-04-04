@@ -1,4 +1,4 @@
-BRANCH = master
+BRANCH = main
 
 build:
 	docker build -t natewalck/retronas:$(BRANCH) .
@@ -11,6 +11,9 @@ push:
 
 run:
 	docker run -d --name retronas natewalck/retronas:$(BRANCH)
+
+compose:
+	docker compose -f docker-compose.yml up -d
 
 teardown:
 	docker stop retronas && docker rm retronas
